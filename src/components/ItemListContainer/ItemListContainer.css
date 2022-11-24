@@ -1,0 +1,9 @@
+.greeting{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    color: rgba(177, 95, 24, 0.849);
+
+}

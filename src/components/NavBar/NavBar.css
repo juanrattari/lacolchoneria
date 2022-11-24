@@ -1,0 +1,9 @@
+.navBar{
+    margin: 3px;
+    color: beige;
+    font-style: oblique;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: brown;
+}
