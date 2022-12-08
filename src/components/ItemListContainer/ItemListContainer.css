@@ -7,3 +7,24 @@
     color: rgba(177, 95, 24, 0.849);
 
 }
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.card{
+    display: flex;
+    width: 380px;
+    height: 350px;
+    margin: 10px;
+    border-style: solid;
+    border-color: red;
+    border: 2px;
+    border-radius: 5px;
+}
+
+.card-img{
+    width: 290px;
+    height: 290px;
+}
