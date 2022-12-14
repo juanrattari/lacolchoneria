@@ -40,3 +40,17 @@
 .centrar{
   text-align: center;
 }
+
+a {
+  text-decoration: solid;
+  color: rgb(160, 154, 103);
+  font-weight: 500;
+}
+button {
+  color: rgb(160, 154, 103);
+  background-color:brown;
+  border-radius: 4px;
+  border-width: 1px;
+  height: 25px;
+  font-weight: bold;
+}

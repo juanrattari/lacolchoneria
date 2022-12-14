@@ -1,0 +1,27 @@
+.detalle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 600px;
+    margin: 0 auto;
+    border-style: groove;
+    border-radius: 4px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 20px;
+}
+
+.item-detalle{
+    display: flex;
+    height: 400px;
+
+    flex-direction: column;
+    max-width: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img{
+    width: 200px;
+    height: 200px;
+}

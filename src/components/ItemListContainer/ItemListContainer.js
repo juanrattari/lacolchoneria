@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { gFetch } from "../../helpers/gFetch"
 
 import "./ItemListContainer.css"
@@ -7,13 +7,23 @@ import "./ItemListContainer.css"
 const ItemListContainer = ( {greeting} ) => {
   const [productos, setProductos] = useState(0)
   const [cargando, setCargando] = useState(true)
+  const { id } = useParams()
+
+
 
   useEffect(()=>{
-    gFetch()
-    .then(data => setProductos(data))
-    .catch(err => console.log(err))
-    .finally(() => setCargando(false))
-  }, [])
+    if (id) {
+      gFetch()
+      .then(data => setProductos(data.filter(prod => prod.categoria === id)))
+      .catch(err => console.log(err))
+      .finally(() => setCargando(false))
+    } else {
+      gFetch()
+      .then(data => setProductos(data))
+      .catch(err => console.log(err))
+      .finally(() => setCargando(false))
+    }
+  }, [id])
 
   console.log(productos)
 
@@ -27,15 +37,17 @@ const ItemListContainer = ( {greeting} ) => {
               <div className="card" key={producto.id}>
                 <div>
                   <div>
-                    {`${producto.nombre} ${producto.categoria} `}
+                    {`${producto.nombre} - ${producto.marca} `}
                   </div>
                   <div>
                     <img className="card-img" src={producto.imagen} alt=""/>
-                    {producto.precio}
+                  </div>
+                  <div>
+                    Precio: {producto.precio}
                   </div>
                 </div>
                 <div>
-                  <button><Link to={`/detalle`}>
+                  <button><Link to={`/detail/${producto.id}`}>
                     Detalle</Link>
                   </button>
                 </div>

@@ -1,5 +1,5 @@
 import {useState} from "react"
-
+import "./ItemCount.css"
 
 const ItemCount = ( { stock=10, inicial=1, onAdd} ) => {
   const [count, setCount] = useState(inicial)
@@ -17,15 +17,16 @@ const ItemCount = ( { stock=10, inicial=1, onAdd} ) => {
   const handleOnAdd = () => {
     onAdd (count)
   }
+
+  console.log(handleOnAdd)   // IMPRIME EN CONSOLA EL NUMERO AGREGADO AL CARRITO
+  
   return (
     <>
-    <div className="greeting">
-        Carrito Contador
-        <br/>
+    <div className="contador">
+      <button onClick={ handleContadorRestar } > - </button>
+      <h1>{count}</h1>
+      <button onClick={ handleContadorSumar } > + </button>
     </div>
-    <h1>{count}</h1>
-    <button onClick={ handleContadorSumar } > + </button>
-    <button onClick={ handleContadorRestar } > - </button>
     <button onClick={handleOnAdd} > Agregar al carrito </button>
     </> 
   )
