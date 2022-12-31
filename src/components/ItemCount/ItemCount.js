@@ -18,8 +18,6 @@ const ItemCount = ( { stock=10, inicial=1, onAdd} ) => {
     onAdd (count)
   }
 
-  console.log(handleOnAdd)   // IMPRIME EN CONSOLA EL NUMERO AGREGADO AL CARRITO
-  
   return (
     <>
     <div className="contador">

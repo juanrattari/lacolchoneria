@@ -1,37 +1,35 @@
 import {useEffect, useState} from "react"
 import { Link, useParams } from "react-router-dom"
-import { gFetch } from "../../helpers/gFetch"
-
+import { Cargando } from "../Cargando/Cargando"
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 import "./ItemListContainer.css"
 
 const ItemListContainer = ( {greeting} ) => {
-  const [productos, setProductos] = useState(0)
+  const [productos, setProductos] = useState([])
   const [cargando, setCargando] = useState(true)
   const { id } = useParams()
-
+  
 
 
   useEffect(()=>{
-    if (id) {
-      gFetch()
-      .then(data => setProductos(data.filter(prod => prod.categoria === id)))
-      .catch(err => console.log(err))
-      .finally(() => setCargando(false))
-    } else {
-      gFetch()
-      .then(data => setProductos(data))
-      .catch(err => console.log(err))
-      .finally(() => setCargando(false))
-    }
+
+    const db = getFirestore()
+    const queryCollection = collection(db, "productos")
+
+    const queryFitrado = id ? query(queryCollection, where ("categoria", "==", id)) : queryCollection
+
+
+    getDocs(queryFitrado)
+    .then(data => setProductos (data.docs.map(productos => ({id: productos.id, ...productos.data()}) )))
+    .catch(err => console.log(err))
+    .finally(()=> setCargando(false))
+  
   }, [id])
-
-  console.log(productos)
-
 
   return (
     <section className="cards">
       { cargando ? 
-            <h2>Cargando...</h2>
+            <Cargando/>
           :
             productos.map (producto =>
               <div className="card" key={producto.id}>
