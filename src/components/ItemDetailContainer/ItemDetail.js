@@ -29,8 +29,9 @@ const ItemDetail = ({producto}) => {
           {isCant ?
           
           <>
-       
-            <Link to="/carrito">Ir al Carrito</Link>
+            <button className="btn-finalizar">
+              <Link to="/carrito" className="btn-finalizar-texto">Ir al carrito y finalizar compra</Link>
+            </button>
  
           </>
           : 

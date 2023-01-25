@@ -13,3 +13,9 @@
     display: flex;
        
 }
+
+.formulario{
+    margin: 10px;
+    height: 30px;
+    text-align: center;
+}

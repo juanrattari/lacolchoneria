@@ -1,7 +1,8 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore"
-import { useState } from "react"
+import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore"
+import { useEffect, useState } from "react"
 import { useCartContext } from "../context/CartContext"
 import "./CartContainer.css"
+import Swal from 'sweetalert2'
 
 
 const CartContainer = () => {
@@ -25,18 +26,26 @@ const CartContainer = () => {
     const db = getFirestore()
     const queryCollection = collection(db, "orders")
 
-// VEERR!!!!!!
-
     if (dataForm.nombre && dataForm.email && dataForm.telefono !== "") {
       addDoc(queryCollection, order)
-      .then(resp => (resp))
+      .then(({id}) => Swal.fire({
+        icon: 'success',
+        title: 'Listo!',
+        text: `Tu número de seguimiento es: ${id} Muchas gracias por tu compra ${dataForm.nombre}`,
+      })
+      )
       .catch(err => console.log(err))
       .finally(() => vaciarCarrito())
     } else {
-      alert("Completar todos los campos")
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacios!',
+        text: 'Por favor, completa todos los campos.',
+      })
     }
 
   }
+
 
   const handleOnChange = (e) => {
     setFormData({
@@ -59,10 +68,10 @@ const CartContainer = () => {
             
            <h4>El precio total es: {precioTotal()}</h4>
            <form>
-            <input type="text" onChange={handleOnChange} name="nombre"  value={dataForm.nombre} placeholder= "ingrese su nombre"/>
-            <input type="text" onChange={handleOnChange} name="telefono" value={dataForm.telefono} placeholder= "ingrese su telefono"/>
-            <input type="text" onChange={handleOnChange} name="email" value={dataForm.email} placeholder= "ingrese su email"/>
-            <button onClick={agregarOrder}>Terminar Compra</button>
+            <input className="formulario" type="text" onChange={handleOnChange} name="nombre"  value={dataForm.nombre} placeholder= "ingrese su nombre"/>
+            <input className="formulario"type="text" onChange={handleOnChange} name="telefono" value={dataForm.telefono} placeholder= "ingrese su telefono"/>
+            <input className="formulario"type="text" onChange={handleOnChange} name="email" value={dataForm.email} placeholder= "ingrese su email"/>
+            <button className="formulario" onClick={agregarOrder}>Terminar Compra</button>
            </form>
           <button onClick={vaciarCarrito}>Vaciar Carrito</button>
         </>

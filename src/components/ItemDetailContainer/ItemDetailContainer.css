@@ -13,7 +13,7 @@
 
 .item-detalle{
     display: flex;
-    height: 400px;
+    height: 440px;
 
     flex-direction: column;
     max-width: 500px;
@@ -21,8 +21,17 @@
     justify-content: center;
 }
 
-.card-img{
+.btn-finalizar{
     width: 200px;
+    height: 60px;    
+}
+
+.btn-finalizar-texto{
+    color: antiquewhite;
+    font-size: 17px;
+}
+.card-img{
+    width: 180px;
     margin: 5px 0;
   
 }
